@@ -7,9 +7,21 @@ describe('Horario reservado', function () {
         //se reserva y elimina del array un horario
         testHorarios.reservarHorario('13:00');
 
-        expect(testHorarios.horarios[0]).to.equal('15:30');
-        expect(testHorarios.horarios[1]).to.equal('18:00');
         expect(testHorarios.horarios.length).to.equal(2);
+    })
+    it('No acepta horarios diferentes al del array', function () {
+        //elijo primer restaurante para testear
+        const testHorarios = listado.restaurantes[0];
+        //selecciono un horario que no esta en el array
+        expect(testHorarios.horarios[1]).to.not.equal('19:00');
+    })
+    it('Con un horario no valido el array se mantiene igual', function () {
+        //elijo segundo restaurante para testear
+        const testHorarios = listado.restaurantes[1];
+        //paso un parametro vacio
+        testHorarios.reservarHorario('');
+
+        expect(testHorarios.horarios.length).to.equal(3);
     })
 })
 
